@@ -1,0 +1,49 @@
+<div
+  class="card group/card bg-white rounded-4xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col h-full p-2"
+>
+  <div
+    class="relative cursor-pointer overflow-hidden rounded-[1.8rem] aspect-4/5"
+    [routerLink]="['/details', product.slug, product.id]"
+  >
+    <img
+      [src]="product.imageCover"
+      class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+      [alt]="product.title"
+    />
+
+    <div
+      class="absolute top-4 right-4 bg-white/70 backdrop-blur-md px-2 py-1 rounded-xl flex items-center gap-1"
+    >
+      <i class="fas fa-star text-yellow-500 text-2xs"></i>
+      <span class="text-[11px] font-bold text-gray-800">{{ product.ratingsAverage }}</span>
+    </div>
+  </div>
+
+  <div class="p-4 flex flex-col grow">
+    <div class="flex justify-between items-center mb-2">
+      <span
+        class="bg-[#8B5E35]/10 text-[#8B5E35] px-3 py-1 rounded-full text-2xs font-bold uppercase tracking-wider"
+      >
+        {{ product.category.name }}
+      </span>
+      <span class="text-[#8B5E35] font-bold text-sm">
+        {{ product.price }} <span class="text-2xs font-medium opacity-70">EGP</span>
+      </span>
+    </div>
+
+    <h4
+      class="text-gray-800 font-bold text-base line-clamp-2 mb-6 group-hover/card:text-[#8B5E35] transition-colors leading-tight"
+    >
+      {{ product.title.split(' ', 4).join(' ') }}
+    </h4>
+
+    <div class="mt-auto pt-2 overflow-hidden">
+      <button
+        (click)="addProductItemToCart(product.id)"
+        class="w-full cursor-pointer bg-[#8B5E35] text-white py-3.5 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all duration-500 shadow-lg shadow-[#8B5E35]/20 hover:bg-[#7a5635] active:scale-95 translate-y-[120%] group-hover/card:translate-y-0"
+      >
+        <i class="fas fa-cart-plus mr-2"></i> Add To Cart
+      </button>
+    </div>
+  </div>
+</div>

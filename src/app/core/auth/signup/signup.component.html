@@ -1,0 +1,234 @@
+<section class="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+  <div class="flex flex-col lg:flex-row w-full min-h-screen">
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-12">
+      <div class="max-w-md w-full">
+        <h2 class="text-3xl font-bold text-[#1A1A37] mb-1">Create an Account</h2>
+        <p class="text-gray-400 mb-8 text-sm">Create a new account</p>
+
+        <form [formGroup]="signupForm" class="space-y-4" (ngSubmit)="submitForm()">
+          <div>
+            <label class="block text-[#1A1A37] font-semibold mb-1.5 text-sm">User Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-4 flex items-center text-[#916841]">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              @let nameControl = signupForm.get('name');
+              <input
+                [class]="{
+                  'border-green-700': nameControl?.valid,
+                  'border-red-700': nameControl?.invalid && nameControl?.touched,
+                }"
+                formControlName="name"
+                type="text"
+                placeholder="Ahmed"
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-100 bg-white shadow-sm focus:ring-2 focus:ring-[#916841] outline-none transition-all placeholder:text-gray-300"
+              />
+            </div>
+            @if (nameControl?.errors && nameControl?.touched) {
+              <div
+                class="mt-2 overflow-hidden rounded-2xl border border-red-100 bg-red-50/30 p-4 animate-fade-in"
+              >
+                @if (nameControl?.getError('required')) {
+                  <p class="text-[13px] text-red-600 font-medium">Input is required.</p>
+                } @else if (nameControl?.getError('minlength')) {
+                  <p class="text-[13px] text-red-600 font-medium">Min 3 chars required.</p>
+                }
+              </div>
+            }
+          </div>
+
+          <div>
+            <label class="block text-[#1A1A37] font-semibold mb-1.5 text-sm">E-mail</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-4 flex items-center text-[#916841]">
+                <i class="far fa-envelope"></i>
+              </span>
+              @let emailControl = signupForm.get('email');
+              <input
+                [class]="{
+                  'border-green-700': emailControl?.valid,
+                  'border-red-700': emailControl?.invalid && emailControl?.touched,
+                }"
+                formControlName="email"
+                type="email"
+                placeholder="Ahmed@gmail.com"
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-100 bg-white shadow-sm focus:ring-2 focus:ring-[#916841] outline-none transition-all placeholder:text-gray-300"
+              />
+            </div>
+            @if (emailControl?.errors && emailControl?.touched) {
+              <div class="mt-2 p-4 rounded-2xl border border-red-100 bg-red-50/30">
+                <p class="text-[13px] text-red-600 font-medium">Please enter a valid email.</p>
+              </div>
+            }
+          </div>
+
+          <div>
+            <label class="block text-[#1A1A37] font-semibold mb-1.5 text-sm">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-4 flex items-center text-[#916841]">
+                <i class="fas fa-lock text-xs"></i>
+              </span>
+              @let passwordControl = signupForm.get('password');
+              <input
+                [class]="{
+                  'border-green-700': passwordControl?.valid,
+                  'border-red-700': passwordControl?.invalid && passwordControl?.touched,
+                }"
+                formControlName="password"
+                [type]="flag1 ? 'password' : 'text'"
+                placeholder="xxxxxxxxxxxx"
+                class="w-full pl-12 pr-12 py-3 rounded-xl border border-gray-100 bg-white shadow-sm focus:ring-2 focus:ring-[#916841] outline-none transition-all placeholder:text-gray-300"
+              />
+              <span
+                (click)="flag1 = !flag1"
+                class="absolute inset-y-0 right-4 flex items-center text-gray-400 cursor-pointer"
+              >
+                <i
+                  class="far text-[#916841]"
+                  [class.fa-eye-slash]="flag1"
+                  [class.fa-eye]="!flag1"
+                ></i>
+              </span>
+            </div>
+            @if (passwordControl?.errors && passwordControl?.touched) {
+              <div class="mt-2 p-4 rounded-2xl border border-red-100 bg-red-50/30">
+                <p class="text-[13px] text-red-600 font-medium">
+                  Password must be at least 6 characters (Letters/Numbers).
+                </p>
+              </div>
+            }
+          </div>
+
+          <div>
+            <label class="block text-[#1A1A37] font-semibold mb-1.5 text-sm"
+              >Confirm Password</label
+            >
+            <div class="relative">
+              <span class="absolute inset-y-0 left-4 flex items-center text-[#916841]">
+                <i class="fas fa-lock text-xs"></i>
+              </span>
+              @let rePasswordControl = signupForm.get('rePassword');
+              <input
+                [class]="{
+                  'border-green-700': rePasswordControl?.valid && !signupForm.hasError('mismatch'),
+                  'border-red-700':
+                    (rePasswordControl?.invalid || signupForm.hasError('mismatch')) &&
+                    rePasswordControl?.touched,
+                }"
+                formControlName="rePassword"
+                [type]="flag2 ? 'password' : 'text'"
+                placeholder="xxxxxxxxxxxx"
+                class="w-full pl-12 pr-12 py-3 rounded-xl border border-gray-100 bg-white shadow-sm focus:ring-2 focus:ring-[#916841] outline-none transition-all placeholder:text-gray-300"
+              />
+              <span
+                (click)="flag2 = !flag2"
+                class="absolute inset-y-0 right-4 flex items-center text-gray-400 cursor-pointer"
+              >
+                <i
+                  class="far text-[#916841]"
+                  [class.fa-eye-slash]="flag2"
+                  [class.fa-eye]="!flag2"
+                ></i>
+              </span>
+            </div>
+
+            @if (
+              rePasswordControl?.touched &&
+              (rePasswordControl?.invalid || signupForm.hasError('mismatch'))
+            ) {
+              <div class="mt-2 p-4 rounded-2xl border border-red-100 bg-red-50/30">
+                <ul class="space-y-1">
+                  @if (rePasswordControl?.hasError('required')) {
+                    <li class="text-[13px] text-red-600 font-medium">Confirmation is required.</li>
+                  } @else if (signupForm.hasError('mismatch')) {
+                    <li class="text-[13px] text-red-600 font-medium">
+                      Password confirmation is incorrect.
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+
+          <div>
+            <label class="block text-[#1A1A37] font-semibold mb-1.5 text-sm">Phone</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-4 flex items-center text-[#916841]">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              @let phoneControl = signupForm.get('phone');
+              <input
+                [class]="{
+                  'border-green-700': phoneControl?.valid,
+                  'border-red-700': phoneControl?.invalid && phoneControl?.touched,
+                }"
+                formControlName="phone"
+                type="tel"
+                placeholder="01xxxxxxxxx"
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-100 bg-white shadow-sm focus:ring-2 focus:ring-[#916841] outline-none transition-all placeholder:text-gray-300"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 pt-1">
+            <input
+              formControlName="agreeTerms"
+              type="checkbox"
+              id="terms"
+              class="cursor-pointer w-4 h-4 rounded text-[#916841] focus:ring-[#916841]"
+            />
+            <label for="terms" class="cursor-pointer text-xs text-gray-500"
+              >I agree to the
+              <a href="#" class="text-[#916841] underline">Terms of Conditions</a></label
+            >
+          </div>
+          @if (signupForm.get('agreeTerms')?.invalid && signupForm.get('agreeTerms')?.touched) {
+            <p class="text-red-600 text-[13px] font-bold">
+              You must agree to the Terms and Conditions to proceed ⚠️
+            </p>
+          }
+
+          <button
+            type="submit"
+            class="w-full cursor-pointer bg-[#916841] text-white py-4 rounded-full font-bold shadow-lg hover:bg-[#7a5635] transition-all disabled:bg-gray-400 mt-4"
+          >
+            Sign Up
+            @if (isLoading) {
+              <i class="fas fa-spinner animate-spin ml-2"></i>
+            }
+          </button>
+
+          <p class="text-center text-red-700 font-bold mt-2">{{ msgError }}</p>
+
+          <p class="text-center text-gray-400 text-sm">
+            Already have on account?
+            <a routerLink="/login" class="text-[#916841] cursor-pointer font-bold underline"
+              >LogIn</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="hidden lg:flex lg:w-[42%] relative">
+      <img
+        src="/images/loginimg.jpg"
+        class="absolute inset-0 w-full h-full object-cover"
+        alt="Fashion Background"
+      />
+      <div
+        class="absolute inset-0 bg-black/40 flex flex-col justify-end p-20 text-white text-center"
+      >
+        <h2 class="text-4xl font-bold mb-4">Welcome to Trendify</h2>
+        <p class="text-lg text-gray-200 mb-8 max-w-sm mx-auto">
+          Discover the latest trends, express your unique style.
+        </p>
+        <div class="flex justify-center space-x-2">
+          <span class="w-6 h-1 bg-[#916841] rounded-full"></span>
+          <span class="w-4 h-1 bg-white/50 rounded-full"></span>
+          <span class="w-4 h-1 bg-white/50 rounded-full"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,155 @@
+<nav class="bg-gray-100 w-full border-b border-default">
+  <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4">
+    <a
+      [routerLink]="isLogin ? '/home' : '/landing'"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+    >
+      <img class="w-8" src="/images/freshcart-logo.svg" alt="trendify logo" />
+      <span class="text-2xl font-semibold">Trendify</span>
+    </a>
+
+    <button
+      (click)="isMenuOpen = !isMenuOpen"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base lg:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+      aria-controls="navbar-default"
+      [aria-expanded]="isMenuOpen"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 7h14M5 12h14M5 17h14"
+        />
+      </svg>
+    </button>
+
+    <div [class.hidden]="!isMenuOpen" class="grow w-full lg:flex lg:w-auto" id="navbar-default">
+      @if (isLogin === true) {
+        <ul
+          class="font-medium lg:ms-10 flex flex-col p-4 lg:p-0 mt-4 border border-default rounded-base lg:flex-row lg:space-x-5 rtl:space-x-reverse lg:mt-0 lg:border-0"
+        >
+          <li>
+            <a
+              routerLink="/home"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Home</a
+            >
+          </li>
+
+          <li>
+            <a
+              routerLink="/products"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/categories"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Categories</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/brands"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Brands</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/contact"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+      }
+
+      <ul
+        class="font-medium ms-auto flex flex-col p-4 lg:p-0 mt-4 border border-default rounded-base lg:flex-row lg:space-x-6 rtl:space-x-reverse lg:mt-0 lg:border-0"
+      >
+        <li class="flex items-center space-x-4 px-3 lg:px-0 py-2 lg:py-0">
+          <a class="text-[#9D9DAA] hover:text-[#8B5E35] transition-colors cursor-pointer"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a class="text-[#9D9DAA] hover:text-[#8B5E35] transition-colors cursor-pointer"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a class="text-[#9D9DAA] hover:text-[#8B5E35] transition-colors cursor-pointer"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a class="text-[#9D9DAA] hover:text-[#8B5E35] transition-colors cursor-pointer"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a class="text-[#9D9DAA] hover:text-[#8B5E35] transition-colors cursor-pointer"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </li>
+
+        @if (isLogin === false) {
+          <li>
+            <a
+              routerLink="/login"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/signup"
+              routerLinkActive="color"
+              class="block py-2 px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >SignUp</a
+            >
+          </li>
+        } @else {
+          <li>
+            <a
+              routerLink="/cart"
+              routerLinkActive="color"
+              class="block py-2 px-3 lg:p-0 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors"
+            >
+              <div class="relative inline-block text-lg">
+                <i class="fas fa-cart-shopping"></i>
+
+                @if (count > 0) {
+                  <span
+                    class="absolute -top-2 -right-2 bg-[#8B5E35] text-white text-2xs w-4 h-4 flex items-center justify-center rounded-full z-10 shadow-sm"
+                  >
+                    {{ count }}
+                  </span>
+                }
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <span
+              (click)="signOut()"
+              class="block py-2 cursor-pointer px-3 rounded text-[#9D9DAA] hover:text-[#8B5E35] transition-colors lg:p-0"
+              >SignOut</span
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

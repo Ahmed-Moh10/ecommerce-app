@@ -1,0 +1,14 @@
+<section class="bg-gray-100 py-16 border border-gray-400">
+  <div class="container">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Popular Products</h2>
+      <div class="w-20 h-1 bg-[#8B5E35] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="parent mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      @for (product of productList.slice(0, 20); track product.id) {
+        <app-card [product]="product" />
+      }
+    </div>
+  </div>
+</section>

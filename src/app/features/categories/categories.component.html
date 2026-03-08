@@ -1,0 +1,36 @@
+<section class="bg-[#F8F9FA] py-20">
+  <div class="container mx-auto px-4">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Shop By Category</h2>
+      <div class="w-20 h-1 bg-[#8B5E35] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      @for (category of categoriesList(); track category._id) {
+        <div class="group cursor-pointer">
+          <div
+            class="relative overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 border border-gray-100"
+          >
+            <div class="aspect-square w-full overflow-hidden">
+              <img
+                [src]="category.image"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                [alt]="category.name"
+              />
+            </div>
+
+            <div
+              class="absolute inset-0 bg-black/5 transition-opacity group-hover:opacity-100 opacity-0"
+            ></div>
+          </div>
+
+          <h3
+            class="mt-4 text-center text-lg font-semibold text-gray-700 transition-colors group-hover:text-[#8B5E35]"
+          >
+            {{ category.name }}
+          </h3>
+        </div>
+      }
+    </div>
+  </div>
+</section>

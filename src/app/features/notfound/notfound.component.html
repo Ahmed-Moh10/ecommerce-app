@@ -1,0 +1,53 @@
+<section class="min-h-screen flex items-center justify-center bg-[#F9F9F9] px-6">
+  <div class="text-center">
+    <div class="relative inline-block mb-8">
+      <h1 class="text-[150px] sm:text-[200px] font-black text-[#1A1A37] leading-none opacity-5">
+        404
+      </h1>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg
+          class="w-24 h-24 sm:w-32 sm:h-32 text-[#916841] opacity-90"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#1A1A37] tracking-tight">
+        Oops! Page Not Found.
+      </h2>
+      <p class="text-[#9D9DAA] text-lg max-w-md mx-auto leading-relaxed">
+        It looks like the outfit you're looking for is out of stock or the link is broken. Let's get
+        you back to the latest trends!
+      </p>
+    </div>
+
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        routerLink="/home"
+        class="bg-[#1A1A37] text-white px-10 py-4 rounded-full font-bold text-sm transition-all hover:bg-[#2A2A5A] shadow-xl shadow-[#1A1A37]/10 w-full sm:w-auto"
+      >
+        Back to Home
+      </a>
+      <a
+        routerLink="/products"
+        class="border-2 border-[#916841] text-[#916841] px-10 py-4 rounded-full font-bold text-sm transition-all hover:bg-[#916841] hover:text-white w-full sm:w-auto"
+      >
+        Explore Shop
+      </a>
+    </div>
+
+    <div class="mt-20 opacity-20">
+      <p class="text-xs uppercase tracking-[0.3em] text-[#1A1A37]">Trendify Lifestyle</p>
+    </div>
+  </div>
+</section>

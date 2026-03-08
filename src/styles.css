@@ -1,3 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@utility container {
+    margin-inline: auto;
+}
+
+@layer components {
+    .btn {
+        @apply disabled:bg-gray-500 disabled:cursor-not-allowed bg-(--main-color) border text-white border-white py-2 cursor-pointer hover:bg-(--second-color) transition-all duration-300 w-full rounded-xl
+    }
+}
+
+body {
+    font-family: "Montserrat", serif;
+}
+
+
+.card {
+    @apply border border-gray-400 shadow-lg p-2 relative rounded-0;
+}
+
+:root {
+    --main-color: #8B5E35;
+    --second-color: #724b2a;
+    --text-firstcolor: #090F41;
+    --text-secondcolor: #9D9DAA;
+    --text-thirdcolor: #C0C0C0;
+    --bg: #F6F6F6;
+    --bg-footer: #2E2E2E;
+}
+
+
+.btn-main {
+    background-color: var(--main-color);
+    padding: 11px 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.btn-main:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+.btn-main:disabled:hover {
+    background-color: #ccc;
+}
+
+.btn-main:hover {
+    background-color: var(--second-color)
+}
