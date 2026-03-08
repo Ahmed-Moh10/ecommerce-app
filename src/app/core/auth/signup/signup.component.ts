@@ -63,7 +63,6 @@ export class SignupComponent {
     }
 
     else {
-      this.signupForm.setErrors({mismatch:true})
       this.signupForm.markAllAsTouched()
     }
 
