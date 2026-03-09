@@ -19,7 +19,7 @@ import { loadingInterceptor } from './core/interceptors/loading-interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes , withHashLocation()), provideClientHydration(withEventReplay()),
+    provideRouter(routes , withHashLocation()),
     provideHttpClient(withFetch()  ,   withInterceptors([headersInterceptor , errorInterceptor , loadingInterceptor])),
     provideAnimations(),
     importProvidersFrom(CookieService , NgxSpinnerModule ),
